@@ -6,7 +6,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-CMakeLists.txt
+a.out
 cmake-build-debug/
 
 # User-specific files (MonoDevelop/Xamarin Studio)

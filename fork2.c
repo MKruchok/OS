@@ -11,12 +11,13 @@ int main()
     child1 = fork();
     if (child1 == 0) {
         printf("My pid = %d (P1), my parent = %d\n", getpid(), getppid());
-    }
-    else {
         child2 = fork();
         if (child2 == 0){
             printf("My pid = %d (P2), my parent = %d\n", getpid(), getppid());
         }
         wait(NULL);
+    } else {
+        wait(NULL);
     }
+
 }
