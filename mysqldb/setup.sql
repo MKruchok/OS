@@ -1,0 +1,3 @@
+UPDATE mysql.user SET host = '%' WHERE user = 'root';
+CREATE DATABASE IF NOT EXISTS AJAX_CURR;
+use AJAX_CURR;

@@ -1,0 +1,40 @@
+version: "3.8"
+services:
+  mysqldb:
+    build: mysqldb
+    container_name: os_mysqldb
+    expose:
+      - 3306
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    restart: always
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: AJAX_CURR
+      MYSQL_ROOT_PASSWORD: marko6462
+      MYSQL_PASSWORD: marko6462
+
+  app:
+    build: app
+    container_name: os_app
+    restart: always
+    ports:
+      - "8080:8443"
+    expose:
+      - 9100
+      - 9090
+    depends_on:
+      - mysqldb
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/AJAX_CURR
+      SPRING_DATASOURCE_USERNAME: "root"
+      SPRING_DATASOURCE_PASSWORD: "marko6462"
+
+  grafana:
+    build: grafana
+    container_name: os_grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - app
